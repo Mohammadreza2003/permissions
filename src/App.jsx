@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 const TotalItems = [
@@ -270,18 +270,33 @@ const TotalItems = [
 const App = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [columns, setColumns] = useState([TotalItems]);
+  const [border, setBorder] = useState(Array(columns.length).fill(null));
 
   const onSelect = (columnIndex, itemIndex) => {
     setSelectedItems((prevSelectedItems) => [
       ...prevSelectedItems.slice(0, columnIndex),
       columns[columnIndex][itemIndex],
     ]);
+
+    setBorder((prevIndices) => [
+      ...prevIndices.slice(0, columnIndex),
+      itemIndex,
+    ]);
+
     setColumns((prevColumns) => [
       ...prevColumns.slice(0, columnIndex + 1),
       columns[columnIndex][itemIndex].children || [],
     ]);
   };
 
+
+  const onSearch = () => {
+    console.log("جستجو");
+  };
+
+  const whenClose = () => {
+    console.log("کلوز");
+  };
 
   return (
     <div className="app-container">
@@ -297,7 +312,7 @@ const App = () => {
           <input placeholder="جستجو" className="search-input" />
         </div>
         <div className="close-div">
-          <button className="close-btn" type="button">
+          <button className="close-btn" type="button" onClick={whenClose}>
             <img
               className="close-img"
               src="/src/assets/close.png"
@@ -307,23 +322,62 @@ const App = () => {
         </div>
         <br />
         <br />
-        <div className="divHeaderOfPermissions"></div>
+        <div
+          className={`divHeaderOfPermissions ${
+            selectedItems.length > 0 ? "with-border" : ""
+          }`}
+        >
+          {selectedItems.length > 0 && (
+            <>
+              {selectedItems.map((item, index) => (
+                <React.Fragment key={index}>
+                  <span className="span-header">{item.title}</span>
+                  {index < selectedItems.length - 1 && (
+                    <span className="arrow-span">{" > "}</span>
+                  )}
+                </React.Fragment>
+              ))}
+              <button className="btn-header" onClick={onSearch}>
+                جستجو
+              </button>
+            </>
+          )}
+        </div>
       </div>
       <br />
       <br />
       <br />
       <div className="items-container">
-        {columns.map((items, index) => (
-          <div className="column" key={index}>
-            <ul style={{ borderRight: "1px solid #ccc" }}>
+        {columns.map((items, columnIndex) => (
+          <div
+            className={`columns ${
+              border[columnIndex] !== null ? "selected" : ""
+            }`}
+            key={columnIndex}
+          >
+            <ul className="column-selected ">
               {items.map((item, itemIndex) => (
-                <li key={itemIndex} onClick={() => onSelect(index, itemIndex)}>
+                <li
+                  className={`li-columns ${
+                    border[columnIndex] === itemIndex ? "selected" : ""
+                  }`}
+                  key={itemIndex}
+                  onClick={() => onSelect(columnIndex, itemIndex)}
+                >
                   {item.title}
                 </li>
               ))}
             </ul>
           </div>
         ))}
+      </div>
+      <div className="widget-icon">
+        <img
+          src="src/assets/625e5aade47aab17f4cf9fcctqk3.png"
+          width="60"
+          height="60"
+          alt="widget-icon"
+        />
       </div>
     </div>
   );

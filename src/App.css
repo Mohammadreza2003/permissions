@@ -91,6 +91,7 @@ li {
   margin-bottom: 15px;
 }
 
+
 .span-header {
   color: white;
   padding-right: 8px;
@@ -128,6 +129,7 @@ li {
 
 ul {
   margin-right: 45px;
+  height: auto;
 }
 
 .items-container {
@@ -157,6 +159,20 @@ ul {
   padding-top: 340px;
 }
 
+.divHeaderOfPermissions.with-border {
+  border-bottom: 1px solid #ccc;
+}
+
+.li-columns.selected {
+  border-bottom: 1px solid #ccc;
+  width: fit-content;
+}
+.widget-icon {
+  display: flex;
+  padding-left: 10px;
+  justify-content: end;
+  padding-top: 300px;
+}
 @media only screen and (max-width: 1280px) {
   .container {
     padding: 5px;
