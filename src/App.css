@@ -156,7 +156,7 @@ ul {
 }
 
 .with-left-border {
-  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 
 @media only screen and (max-width: 1280px) {
