@@ -11,8 +11,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
 .header {
   color: black;
   background-color: white;
@@ -21,12 +19,10 @@ body {
   padding: 5px;
   font-size: 20px;
   margin-right: -8px;
-  margin-bottom: 10px;
   width: 100.35%;
   height: 133px;
   margin-top: -8px;
 }
-
 
 .title-img {
   width: 145px;
@@ -107,23 +103,24 @@ li {
   list-style: none;
   color: white;
   font-family: sans-serif !important;
-  font-size: 25px;
+  font-size: 17px;
   margin-bottom: 15px;
 }
 
 ul {
-  margin-right: 45px;
+  margin-right: 9.5px;
   height: auto;
 }
 
 .items-container {
   display: flex;
   flex-direction: row;
+  height: 73vh;
 }
 
 .column-selected {
   height: 100%;
-  padding-left: 45px;
+  padding-left: 174px;
 }
 
 .display-none {
@@ -144,6 +141,7 @@ ul {
 
 .divHeaderOfPermissions.with-border {
   border-bottom: 1px solid #ccc;
+  margin-top: -9px;
 }
 
 .li-columns.selected {
@@ -151,12 +149,8 @@ ul {
   width: fit-content;
 }
 
-.with-border {
-  border-bottom: 1px solid #ccc;
-}
-
 .with-left-border {
-  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
 }
 
 @media only screen and (max-width: 1280px) {

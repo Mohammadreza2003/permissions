@@ -6,23 +6,22 @@ const App = () => {
   const [columns, setColumns] = useState([TotalItems]);
   const [border, setBorder] = useState(Array(columns.length).fill(null));
 
- const onSelect = (columnIndex, itemIndex) => {
-   setSelectedItems((prevSelectedItems) => [
-     ...prevSelectedItems.slice(0, columnIndex),
-     columns[columnIndex][itemIndex],
-   ]);
+  const onSelect = (columnIndex, itemIndex) => {
+    setSelectedItems((prevSelectedItems) => [
+      ...prevSelectedItems.slice(0, columnIndex),
+      columns[columnIndex][itemIndex],
+    ]);
 
-   setBorder((prevIndices) => [
-     ...prevIndices.slice(0, columnIndex),
-     itemIndex,
-   ]);
+    setBorder((prevIndices) => [
+      ...prevIndices.slice(0, columnIndex),
+      itemIndex,
+    ]);
 
-   setColumns((prevColumns) => [
-     ...prevColumns.slice(0, columnIndex + 1),
-     columns[columnIndex][itemIndex].children || [],
-   ]);
- };
-
+    setColumns((prevColumns) => [
+      ...prevColumns.slice(0, columnIndex + 1),
+      columns[columnIndex][itemIndex].children || [],
+    ]);
+  };
 
   const onSearch = () => {
     console.log("جستجو");
@@ -55,7 +54,7 @@ const App = () => {
         <br />
         <div
           className={`divHeaderOfPermissions ${
-            selectedItems.length > 0 ? "with-border" : ""
+            selectedItems.length > 0 ? "with-border"  : ""
           }`}
         >
           {selectedItems.length > 0 && (
@@ -75,10 +74,9 @@ const App = () => {
           )}
         </div>
       </div>
-      <br />
-      <br />
-      <br />
-        <div className="items-container">
+      <br/>
+      <br/>
+      <div className="items-container">
         {columns.map((items, columnIndex) => (
           <div
             className={`columns ${
@@ -86,14 +84,24 @@ const App = () => {
             }`}
             key={columnIndex}
           >
-            <ul className={`column-selected ${border[columnIndex] !== null ? "with-left-border" : ""}`}>
+            <ul
+              className={`column-selected ${
+                selectedItems.length > columnIndex ? "with-left-border" : ""
+              }`}
+            >
               {items.map((item, itemIndex) => (
                 <li
                   className={`li-columns ${
                     border[columnIndex] === itemIndex ? "selected" : ""
                   }`}
                   key={itemIndex}
-                  onClick={() => onSelect(columnIndex, itemIndex)}
+                  onClick={() => {
+                    if (item.children) {
+                      onSelect(columnIndex, itemIndex);
+                    } else if (item.link) {
+                      console.log("باز کردن لینک");
+                    }
+                  }}
                 >
                   {item.title}
                 </li>
