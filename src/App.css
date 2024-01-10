@@ -43,22 +43,6 @@ body {
   display: flex;
 }
 
-.search-input {
-  border-radius: 50px;
-  background-color: white;
-  border: 1px solid #7070704f;
-  width: 1137px;
-  height: 28px;
-  padding-right: 30px;
-  margin-right: 265px;
-  margin-top: -24px;
-
-}
-
-.search-input:hover {
-  outline: 2px solid #57a8ff;
-}
-
 .close-div {
   display: flex;
   justify-content: flex-end;
@@ -138,7 +122,6 @@ ul {
 }
 
 .column-selected {
-  border-left: 1px solid white;
   height: 100%;
   padding-left: 45px;
 }
@@ -167,12 +150,15 @@ ul {
   border-bottom: 1px solid #ccc;
   width: fit-content;
 }
-.widget-icon {
-  display: flex;
-  padding-left: 10px;
-  justify-content: end;
-  padding-top: 300px;
+
+.with-border {
+  border-bottom: 1px solid #ccc;
 }
+
+.with-left-border {
+  border-left: 1px solid #ccc;
+}
+
 @media only screen and (max-width: 1280px) {
   .container {
     padding: 5px;
